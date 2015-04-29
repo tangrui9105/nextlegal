@@ -1,0 +1,257 @@
+swagger: "2.0"
+info:
+  title: Next Legal HTTP API
+  description: |
+    The Next legal internal API spec.
+
+    TODO
+    1. Lawyers api spec
+    2. Customers api spec
+  version: "1.0"
+  contact:
+    name: support for API
+    email: "tangrui9105@gmail.com"
+host: www.nextlegal.com
+schemes:
+  - https
+basePath: /nextlegal/v1
+tags:
+  - name: orders
+    description: customer orders
+  - name: fulltimes
+    description: full-time lawyers, can assign orders to part-time lawyers
+  - name: parttimes
+    description: part-time lawyers, fulfill the orders and report to full-time lawyers
+  - name: customers
+    description: customers can request order
+consumes:
+  - application/json
+produces:
+  - application/json
+securityDefinitions:
+  nlToken:
+    description: The JWT token fetched from authenticaiton/authorization service
+    type: apiKey
+    name: nl-token
+    in: header
+security:
+  - nlToken: []
+paths:
+  /orders/:
+    get:
+      summary: list orders
+      description: |
+        list all orders, support pagination and filter.
+
+        example for a empty result:
+        ```json
+        {"total":0, "page":1, "pageSize":20, "data":[]}
+        ```
+      parameters:
+        - &paginationParameters
+          name: body
+          in: body
+          schema:
+            $ref: '#/definitions/PaginationParameters'
+      tags:
+        - orders
+      responses:
+        200:
+          description: list of order object
+          schema:
+            properties:
+              total:
+                description: total number of objects
+                type: integer
+                minimum: 0
+              page:
+                description: number of current page
+                type: integer
+                minimum: 1
+              pageSize:
+                description: max number of objects per page
+                type: integer
+                minimum: 1
+              data:
+                type: array
+                items:
+                  $ref: '#/definitions/Order'
+    post:
+      summary: create order
+      description: |
+        create order based on the request in payload
+      tags:
+        - orders
+      parameters:
+        - name: body
+          in: body
+          required: true
+          schema:
+            $ref: '#/definitions/Order'
+      responses:
+        201:
+          description: creaet order request accepted
+          schema:
+            $ref: '#/definitions/Order'
+
+  /orders/{id}/:
+    get:
+      summary: order information
+      description: |
+        Get detail information of one order.
+      tags:
+        - orders
+      parameters:
+        - &OrderIdPara
+          name: id
+          in: path
+          description: ID of the orders
+          required: true
+          type: integer
+      tags:
+        - orders
+      responses:
+        200:
+          description: Order created
+          schema:
+            $ref: '#/definitions/Order'
+        404: &404
+          description: Not Found
+          schema:
+            $ref: '#/definitions/Error'
+    delete:
+      summary: delete order
+      description: |
+        Delete given order
+      tags:
+        - orders
+      parameters:
+        - *OrderIdPara
+      responses:
+        202:
+          description: delete operation accepted
+          schema:
+            $ref: '#/definitions/Order'
+        404: *404
+    put:
+      summary: update order
+      description: |
+        Update order using the value in body.
+
+        Example:
+        1. update name and description of order
+            ```json
+            {
+              "name":"newName",
+              "description": "my new description"
+            }
+            ```
+      tags:
+        - orders
+      parameters:
+        - *OrderIdPara
+        - name: body
+          in: body
+          required: true
+          schema:
+            $ref: '#/definitions/UpdateOrderRequest'
+      responses:
+        202:
+          description: update operation accepted
+          schema:
+            $ref: '#/definitions/Order'
+        404: *404
+
+definitions:
+  Order:
+    description:
+      represent an order resource.
+    required:
+      - companyStatus
+      - tradeTarget
+      - tradeBackground
+      - deadline
+      - pay
+    properties:
+      id:
+        type: integer
+        description: ID of the order.
+      companyStatus:
+        description: the whole status of the customer company
+        type: string
+      tradeTarget:
+        description: trade target
+        type: string
+      tradeBackground:
+        description: trade background
+        type: string
+      downloads:
+        description: releted materials download links
+        type: string
+      startDate:
+        type: string
+        format: date-time
+        description: order start time
+      etc:
+        type: string
+        format: date-time
+        description: estimated time of completion
+      deadline:
+        type: string
+        format: date-time
+        description: order deadline
+      pay:
+        type: string
+        description: the pay for lawyer
+      status:
+        type: string
+        description: status of order
+        enum: &orderStatus
+          - submitted
+          - assigned
+          - accepted
+          - comleted
+          - failed
+      specialRequirement:
+        type: string
+        description: special requirement from customer
+
+  PaginationParameters:
+    description: paramters for a pagination request
+    properties:
+      page:
+        description: current page number
+        type: integer
+        minimum: 1
+      pageSize:
+        description: max number of objects per page
+        type: integer
+        minimum: 1
+
+  UpdateOrderRequest:
+    properties:
+      companyStatus:
+        description: the whole status of the customer company
+        type: string
+      tradeTarget:
+        description: trade target
+        type: string
+      tradeBackground:
+        description: trade background
+        type: string
+      pay:
+        type: string
+        description: the pay for lawyer
+      etc:
+        type: string
+        format: date-time
+        description: estimated time of completion
+
+  Error:
+    properties:
+      code:
+        description: error code of dbaas. Please refer to http://vchs.vmware.com/doc for detail information.
+        type: string
+      message:
+        description: human readable error message.
+        type: string
