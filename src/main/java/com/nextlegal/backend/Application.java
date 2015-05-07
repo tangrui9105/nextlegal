@@ -1,5 +1,8 @@
 package com.nextlegal.backend;
 
+import org.springframework.boot.SpringApplication;
+import org.springframework.boot.autoconfigure.SpringBootApplication;
+
 /**
  * Created by tangrui on 2015/5/7.
  */
