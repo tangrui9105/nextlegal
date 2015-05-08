@@ -8,5 +8,29 @@
 *.war
 *.ear
 
-# virtual machine crash logs, see http://www.java.com/en/download/help/error_hotspot.xml
+# Virtual machine crash logs, see http://www.java.com/en/download/help/error_hotspot.xml
 hs_err_pid*
+
+# Idea files
+.classpath
+.idea/
+.idea_modules/
+*.iml
+*.ipr
+*.iws
+*.ids
+
+# Patch files
+*.patch
+
+# Eclipse Project files
+.settings/
+.project
+
+
+# Vim temp file
+*.swp
+
+# Gradle files
+build
+.gradle
