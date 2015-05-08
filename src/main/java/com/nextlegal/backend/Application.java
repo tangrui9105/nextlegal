@@ -2,13 +2,19 @@ package com.nextlegal.backend;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.boot.builder.SpringApplicationBuilder;
+import org.springframework.boot.context.web.SpringBootServletInitializer;
 
-/**
- * Created by tangrui on 2015/5/7.
- */
 @SpringBootApplication
-public class Application {
-    public static void main(String[] args) throws Throwable {
+public class Application extends SpringBootServletInitializer {
+
+    public static void main(String[] args) {
         SpringApplication.run(Application.class, args);
     }
+
+    @Override
+    protected SpringApplicationBuilder configure(SpringApplicationBuilder application) {
+        return application.sources(Application.class);
+    }
+
 }
