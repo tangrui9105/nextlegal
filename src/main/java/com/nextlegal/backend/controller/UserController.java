@@ -19,6 +19,7 @@ import java.util.NoSuchElementException;
 
 @Controller
 public class UserController {
+    /*
 
     private static final Logger LOGGER = LoggerFactory.getLogger(UserController.class);
     private final UserService userService;
@@ -70,5 +71,5 @@ public class UserController {
         // ok, redirect
         return "redirect:/users";
     }
-
+    */
 }

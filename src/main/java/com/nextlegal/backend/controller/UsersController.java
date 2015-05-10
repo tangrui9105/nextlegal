@@ -11,6 +11,7 @@ import org.springframework.web.servlet.ModelAndView;
 @Controller
 public class UsersController {
 
+    /*
     private static final Logger LOGGER = LoggerFactory.getLogger(UsersController.class);
     private final UserService userService;
 
@@ -24,6 +25,7 @@ public class UsersController {
         LOGGER.debug("Getting users page");
         return new ModelAndView("users", "users", userService.getAllUsers());
     }
+    */
 
 
 }
