@@ -15,11 +15,14 @@ public class HomeController {
 
     private static final Logger LOGGER = LoggerFactory.getLogger(HomeController.class);
 
-    /*
-    @RequestMapping("/")
-    public String getHomePage() {
-        LOGGER.debug("Getting home page");
-        return "home";
+    @RequestMapping("/user")
+    @ResponseBody
+    public Map<String, Object> user(Principal user) {
+        return Collections.<String, Object> singletonMap("name", user.getName());
     }
-    */
+
+    @RequestMapping("/login")
+    public String login() {
+        return "forward:/";
+    }
 }
