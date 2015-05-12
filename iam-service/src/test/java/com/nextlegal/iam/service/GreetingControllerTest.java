@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package hello;
+package com.nextlegal.iam.service;
 
 import org.junit.Before;
 import org.junit.Test;
@@ -32,6 +32,7 @@ import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 import org.springframework.util.Base64Utils;
 import org.springframework.web.context.WebApplicationContext;
+import com.nextlegal.iam.service.controller.GreetingController;
 
 import static org.hamcrest.Matchers.*;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;

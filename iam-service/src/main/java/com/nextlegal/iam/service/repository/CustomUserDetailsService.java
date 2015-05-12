@@ -14,12 +14,12 @@
  * limitations under the License.
  */
 
-package hello;
+package com.nextlegal.iam.service.repository;
 
 import java.util.Collection;
 
-import hello.data.User;
-import hello.data.UserRepository;
+import com.nextlegal.iam.service.domain.User;
+import com.nextlegal.iam.service.repository.UserRepository;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.GrantedAuthority;

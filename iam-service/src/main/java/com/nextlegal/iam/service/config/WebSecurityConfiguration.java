@@ -14,8 +14,9 @@
  * limitations under the License.
  */
 
-package hello;
+package com.nextlegal.iam.service.config;
 
+import com.nextlegal.iam.service.repository.CustomUserDetailsService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;

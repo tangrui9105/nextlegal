@@ -30,7 +30,7 @@ produces:
   - application/json
 securityDefinitions:
   nlToken:
-    description: The JWT token fetched from authenticaiton/authorization service
+    description: The JWT token fetched from authenticaiton/authorization com.nextlegal.iam.service
     type: apiKey
     name: nl-token
     in: header

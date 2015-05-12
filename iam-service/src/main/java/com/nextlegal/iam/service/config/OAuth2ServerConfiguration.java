@@ -14,8 +14,9 @@
  * limitations under the License.
  */
 
-package hello;
+package com.nextlegal.iam.service.config;
 
+import com.nextlegal.iam.service.repository.CustomUserDetailsService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.context.annotation.Bean;
@@ -94,7 +95,7 @@ public class OAuth2ServerConfiguration {
 			// @formatter:off
 			clients
 				.inMemory()
-					.withClient("clientapp")
+					.withClient("iamclient")
 						.authorizedGrantTypes("password", "refresh_token")
 						.authorities("USER")
 						.scopes("read", "write")
