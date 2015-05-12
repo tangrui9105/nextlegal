@@ -1,37 +1,50 @@
+// Establish version and status
+ext.githubProjectName = rootProject.name // Change if github project name is not the same as the root project's name
+
 buildscript {
     repositories {
-        mavenCentral()
+        mavenLocal()
+        mavenCentral() // maven { url 'http://jcenter.bintray.com' }
     }
+    apply from: file('gradle/buildscript.gradle'), to: buildscript 
+}
+
+allprojects {
+    repositories { 
+        mavenLocal()
+        mavenCentral() // maven { url: 'http://jcenter.bintray.com' }
+        maven { url "https://repo.spring.io/libs-release" }
+    }
+}
+
+apply from: file('gradle/maven.gradle')
+apply from: file('gradle/check.gradle')
+apply from: file('gradle/release.gradle')
+
+subprojects {
+    apply plugin: "java"
+    apply plugin: "eclipse"
+    apply plugin: "idea"
     dependencies {
-        classpath("org.springframework.boot:spring-boot-gradle-plugin:1.2.3.RELEASE")
     }
 }
 
-apply plugin: 'java'
-apply plugin: 'idea'
-apply plugin: 'spring-boot'
-
-jar {
-    baseName = 'nextlegal'
-    version =  '0.1.0'
-}
-
-repositories {
-    mavenCentral()
-}
-
-dependencies {
-    compile("org.springframework.boot:spring-boot-starter-security")
-    compile("org.springframework.boot:spring-boot-starter-data-jpa")
-    compile("org.springframework.boot:spring-boot-starter-freemarker")
-    runtime('mysql:mysql-connector-java')
-    runtime("com.h2database:h2")
-    runtime('org.hibernate:hibernate-core')
-    runtime('org.hibernate:hibernate-entitymanager')
-    runtime("org.flywaydb:flyway-core")
-    testCompile("junit:junit")
+project(':iam-service') {
+    apply plugin: "spring-boot"
+    dependencies {
+        compile("org.springframework.boot:spring-boot-starter-web")
+        compile("org.springframework.boot:spring-boot-starter-security")
+        compile("org.springframework.boot:spring-boot-starter-data-jpa")
+        compile("org.springframework.security.oauth:spring-security-oauth2:2.0.7.RELEASE")
+        compile("com.fasterxml.jackson.core:jackson-databind")
+        compile("org.hsqldb:hsqldb")
+        providedRuntime("org.springframework.boot:spring-boot-starter-tomcat")
+        testCompile("org.springframework.boot:spring-boot-starter-test")
+        testCompile("com.jayway.jsonpath:json-path")
+        testCompile("com.jayway.jsonpath:json-path-assert:0.9.1")
+    }
 }
 
 task wrapper(type: Wrapper) {
-    gradleVersion = '2.4'
+	gradleVersion = "2.3"
 }

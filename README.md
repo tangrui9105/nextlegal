@@ -1,2 +1,2 @@
-# nextlegal
-Next Legal
+# Next Legal
+面向广大中小企业及创业公司，提供商业法律咨询云服务
