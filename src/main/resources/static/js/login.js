@@ -1,4 +1,4 @@
-angular.module('hello', []).config(function($httpProvider) {
+angular.module('login', []).config(function($httpProvider) {
 
 	$httpProvider.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
 

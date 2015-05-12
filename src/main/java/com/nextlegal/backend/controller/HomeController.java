@@ -18,6 +18,7 @@ public class HomeController {
     @RequestMapping("/user")
     @ResponseBody
     public Map<String, Object> user(Principal user) {
+        System.out.println(user);
         return Collections.<String, Object> singletonMap("name", user.getName());
     }
 

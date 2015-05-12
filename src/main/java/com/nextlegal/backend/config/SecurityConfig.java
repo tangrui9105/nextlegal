@@ -30,10 +30,10 @@ import java.io.IOException;
 @Order(SecurityProperties.ACCESS_OVERRIDE_ORDER)
 class SecurityConfig extends WebSecurityConfigurerAdapter {
 
-    /*
     @Autowired
     private UserDetailsService userDetailsService;
 
+    /*
     @Override
     protected void configure(HttpSecurity http) throws Exception {
 
@@ -56,6 +56,7 @@ class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .and()
                 .rememberMe();
     }
+    */
 
     @Override
     public void configure(AuthenticationManagerBuilder auth) throws Exception {
@@ -63,7 +64,6 @@ class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .userDetailsService(userDetailsService)
                 .passwordEncoder(new BCryptPasswordEncoder());
     }
-    */
 
     @Autowired
     public void globalUserDetails(AuthenticationManagerBuilder auth) throws Exception {
