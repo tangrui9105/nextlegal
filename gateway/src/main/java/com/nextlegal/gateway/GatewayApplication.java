@@ -1,4 +1,4 @@
-package demo;
+package com.nextlegal.gateway;
 
 import java.io.IOException;
 import java.security.Principal;

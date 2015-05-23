@@ -1,2 +1,5 @@
-include 'oauth-service'
-include 'gateway-service'
+include 'oauth'
+include 'gateway'
+include 'ui'
+include 'resource'
+include 'admin'

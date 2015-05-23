@@ -1,4 +1,4 @@
-package demo;
+package com.nextlegal.admin;
 
 import java.security.Principal;
 import java.util.LinkedHashMap;

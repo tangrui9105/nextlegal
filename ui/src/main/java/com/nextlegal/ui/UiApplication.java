@@ -1,4 +1,4 @@
-package demo;
+package com.nextlegal.ui;
 
 import java.security.Principal;
 import java.util.Collections;
