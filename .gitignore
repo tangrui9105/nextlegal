@@ -51,3 +51,9 @@ dependency-reduced-pom.xml
 .classpath
 .idea/
 .idea_modules/
+
+# Logs
+logs/
+
+# Redis dump file
+dump.rdb
