@@ -12,32 +12,57 @@ import javax.validation.constraints.*;
     **/
     public class Order  {
     
-        private Integer id = null;
-        private String companyStatus = null;
         private String tradeTarget = null;
-        private String tradeBackground = null;
         private String downloads = null;
-        private Date startDate = null;
         private Date etc = null;
-        private Date deadline = null;
+        private String companyStatus = null;
         private String pay = null;
+        private Integer id = null;
+        private String specialRequirement = null;
+        private String tradeBackground = null;
+        private Date deadline = null;
+        private Date startDate = null;
         public enum StatusEnum {
          submitted,  assigned,  accepted,  comleted,  failed, 
         };
         private StatusEnum status = null;
-        private String specialRequirement = null;
 
     
         /**
-            * ID of the order.
+            * trade target
         **/
-        @JsonProperty("id")
+        @JsonProperty("tradeTarget")
         @Valid
-        public Integer getId() {
-            return id;
+        @NotNull
+        public String getTradeTarget() {
+            return tradeTarget;
         }
-        public void setId(Integer id) {
-            this.id = id;
+        public void setTradeTarget(String tradeTarget) {
+            this.tradeTarget = tradeTarget;
+        }
+    
+        /**
+            * releted materials download links
+        **/
+        @JsonProperty("downloads")
+        @Valid
+        public String getDownloads() {
+            return downloads;
+        }
+        public void setDownloads(String downloads) {
+            this.downloads = downloads;
+        }
+    
+        /**
+            * estimated time of completion
+        **/
+        @JsonProperty("etc")
+        @Valid
+        public Date getEtc() {
+            return etc;
+        }
+        public void setEtc(Date etc) {
+            this.etc = etc;
         }
     
         /**
@@ -54,16 +79,40 @@ import javax.validation.constraints.*;
         }
     
         /**
-            * trade target
+            * the pay for lawyer
         **/
-        @JsonProperty("tradeTarget")
+        @JsonProperty("pay")
         @Valid
         @NotNull
-        public String getTradeTarget() {
-            return tradeTarget;
+        public String getPay() {
+            return pay;
         }
-        public void setTradeTarget(String tradeTarget) {
-            this.tradeTarget = tradeTarget;
+        public void setPay(String pay) {
+            this.pay = pay;
+        }
+    
+        /**
+            * ID of the order.
+        **/
+        @JsonProperty("id")
+        @Valid
+        public Integer getId() {
+            return id;
+        }
+        public void setId(Integer id) {
+            this.id = id;
+        }
+    
+        /**
+            * special requirement from customer
+        **/
+        @JsonProperty("specialRequirement")
+        @Valid
+        public String getSpecialRequirement() {
+            return specialRequirement;
+        }
+        public void setSpecialRequirement(String specialRequirement) {
+            this.specialRequirement = specialRequirement;
         }
     
         /**
@@ -80,15 +129,16 @@ import javax.validation.constraints.*;
         }
     
         /**
-            * releted materials download links
+            * order deadline
         **/
-        @JsonProperty("downloads")
+        @JsonProperty("deadline")
         @Valid
-        public String getDownloads() {
-            return downloads;
+        @NotNull
+        public Date getDeadline() {
+            return deadline;
         }
-        public void setDownloads(String downloads) {
-            this.downloads = downloads;
+        public void setDeadline(Date deadline) {
+            this.deadline = deadline;
         }
     
         /**
@@ -104,44 +154,6 @@ import javax.validation.constraints.*;
         }
     
         /**
-            * estimated time of completion
-        **/
-        @JsonProperty("etc")
-        @Valid
-        public Date getEtc() {
-            return etc;
-        }
-        public void setEtc(Date etc) {
-            this.etc = etc;
-        }
-    
-        /**
-            * order deadline
-        **/
-        @JsonProperty("deadline")
-        @Valid
-        @NotNull
-        public Date getDeadline() {
-            return deadline;
-        }
-        public void setDeadline(Date deadline) {
-            this.deadline = deadline;
-        }
-    
-        /**
-            * the pay for lawyer
-        **/
-        @JsonProperty("pay")
-        @Valid
-        @NotNull
-        public String getPay() {
-            return pay;
-        }
-        public void setPay(String pay) {
-            this.pay = pay;
-        }
-    
-        /**
             * status of order
         **/
         @JsonProperty("status")
@@ -153,35 +165,23 @@ import javax.validation.constraints.*;
             this.status = status;
         }
     
-        /**
-            * special requirement from customer
-        **/
-        @JsonProperty("specialRequirement")
-        @Valid
-        public String getSpecialRequirement() {
-            return specialRequirement;
-        }
-        public void setSpecialRequirement(String specialRequirement) {
-            this.specialRequirement = specialRequirement;
-        }
-    
 
         @Override
         public String toString()  {
             StringBuilder sb = new StringBuilder();
             sb.append("class Order {\n");
             
-            sb.append("  id: ").append(id).append("\n");
-            sb.append("  companyStatus: ").append(companyStatus).append("\n");
             sb.append("  tradeTarget: ").append(tradeTarget).append("\n");
-            sb.append("  tradeBackground: ").append(tradeBackground).append("\n");
             sb.append("  downloads: ").append(downloads).append("\n");
-            sb.append("  startDate: ").append(startDate).append("\n");
             sb.append("  etc: ").append(etc).append("\n");
-            sb.append("  deadline: ").append(deadline).append("\n");
+            sb.append("  companyStatus: ").append(companyStatus).append("\n");
             sb.append("  pay: ").append(pay).append("\n");
-            sb.append("  status: ").append(status).append("\n");
+            sb.append("  id: ").append(id).append("\n");
             sb.append("  specialRequirement: ").append(specialRequirement).append("\n");
+            sb.append("  tradeBackground: ").append(tradeBackground).append("\n");
+            sb.append("  deadline: ").append(deadline).append("\n");
+            sb.append("  startDate: ").append(startDate).append("\n");
+            sb.append("  status: ").append(status).append("\n");
             sb.append("}\n");
             return sb.toString();
         }

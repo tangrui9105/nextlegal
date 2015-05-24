@@ -9,24 +9,12 @@ import javax.validation.constraints.*;
     
     public class UpdateOrderRequest  {
     
-        private String companyStatus = null;
         private String tradeTarget = null;
-        private String tradeBackground = null;
-        private String pay = null;
         private Date etc = null;
+        private String companyStatus = null;
+        private String pay = null;
+        private String tradeBackground = null;
 
-    
-        /**
-            * the whole status of the customer company
-        **/
-        @JsonProperty("companyStatus")
-        @Valid
-        public String getCompanyStatus() {
-            return companyStatus;
-        }
-        public void setCompanyStatus(String companyStatus) {
-            this.companyStatus = companyStatus;
-        }
     
         /**
             * trade target
@@ -41,15 +29,27 @@ import javax.validation.constraints.*;
         }
     
         /**
-            * trade background
+            * estimated time of completion
         **/
-        @JsonProperty("tradeBackground")
+        @JsonProperty("etc")
         @Valid
-        public String getTradeBackground() {
-            return tradeBackground;
+        public Date getEtc() {
+            return etc;
         }
-        public void setTradeBackground(String tradeBackground) {
-            this.tradeBackground = tradeBackground;
+        public void setEtc(Date etc) {
+            this.etc = etc;
+        }
+    
+        /**
+            * the whole status of the customer company
+        **/
+        @JsonProperty("companyStatus")
+        @Valid
+        public String getCompanyStatus() {
+            return companyStatus;
+        }
+        public void setCompanyStatus(String companyStatus) {
+            this.companyStatus = companyStatus;
         }
     
         /**
@@ -65,15 +65,15 @@ import javax.validation.constraints.*;
         }
     
         /**
-            * estimated time of completion
+            * trade background
         **/
-        @JsonProperty("etc")
+        @JsonProperty("tradeBackground")
         @Valid
-        public Date getEtc() {
-            return etc;
+        public String getTradeBackground() {
+            return tradeBackground;
         }
-        public void setEtc(Date etc) {
-            this.etc = etc;
+        public void setTradeBackground(String tradeBackground) {
+            this.tradeBackground = tradeBackground;
         }
     
 
@@ -82,11 +82,11 @@ import javax.validation.constraints.*;
             StringBuilder sb = new StringBuilder();
             sb.append("class UpdateOrderRequest {\n");
             
-            sb.append("  companyStatus: ").append(companyStatus).append("\n");
             sb.append("  tradeTarget: ").append(tradeTarget).append("\n");
-            sb.append("  tradeBackground: ").append(tradeBackground).append("\n");
-            sb.append("  pay: ").append(pay).append("\n");
             sb.append("  etc: ").append(etc).append("\n");
+            sb.append("  companyStatus: ").append(companyStatus).append("\n");
+            sb.append("  pay: ").append(pay).append("\n");
+            sb.append("  tradeBackground: ").append(tradeBackground).append("\n");
             sb.append("}\n");
             return sb.toString();
         }

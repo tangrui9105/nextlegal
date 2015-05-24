@@ -2,10 +2,19 @@ apply plugin: "application"
 
 dependencies {
     compile 'com.wordnik:swagger-codegen:2.1.2-M1'
+    compile 'org.json:json:20141113'
+    compile 'org.yaml:snakeyaml:1.15'
     runtime 'org.slf4j:slf4j-simple:1.7.12'
 }
 
+def m = 'com.wordnik.swagger.codegen.Codegen'
+def a = ['-l', 'com.nextlegal.codegen.NextLegalCodegen', '-o', '../api', '-i', '/tmp/nextlegal.json']
+if (project.hasProperty('json')) {
+    m = 'com.nextlegal.codegen.Yaml2Json'
+    a = ['../api/nextlegal.yaml']
+}
+
 run {
-    mainClassName = 'com.wordnik.swagger.codegen.Codegen'
-    args = ['-l', 'com.nextlegal.codegen.NextLegalCodegen', '-o', '../api', '-i', 'nextlegal.json']
+    mainClassName = m
+    args = a
 }
