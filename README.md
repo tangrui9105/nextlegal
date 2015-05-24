@@ -1,10 +1,8 @@
 # Next Legal
-面向广大中小企业及创业公司，提供商业法律咨询云服务
-=================================================
 
 ## Architecture
 
-<img src="https://github.com/tangrui9105/nextlegal/docs/architecture.jpg">
+<img src="https://github.com/tangrui9105/nextlegal/blob/master/docs/architecture.jpg">
 
 ## Installation
 
