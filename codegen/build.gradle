@@ -1,0 +1,11 @@
+apply plugin: "application"
+
+dependencies {
+    compile 'com.wordnik:swagger-codegen:2.1.2-M1'
+    runtime 'org.slf4j:slf4j-simple:1.7.12'
+}
+
+run {
+    mainClassName = 'com.wordnik.swagger.codegen.Codegen'
+    args = ['-l', 'com.nextlegal.codegen.NextLegalCodegen', '-o', '../api', '-i', 'nextlegal.json']
+}
